@@ -7,6 +7,8 @@ const walletAddress = process.env.SIGNER_WALLET_ADDRESS;
 const walletSignerSecretKey = process.env.SIGNER_WALLET_SECRET_KEY;
 
 if (!apiKey || !walletAddress || !walletSignerSecretKey) {
+    console.log(apiKey, walletAddress, walletSignerSecretKey);
+
     throw new Error("Missing environment variables");
 }
 
