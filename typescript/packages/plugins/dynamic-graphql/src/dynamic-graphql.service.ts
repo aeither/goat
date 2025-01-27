@@ -9,9 +9,9 @@ export class DynamicGraphqlService {
     })
     async executeQuery(walletClient: EVMWalletClient, parameters: GraphQLParameters) {
         const response = await fetch(parameters.endpoint, {
-            method: 'POST',
+            method: "POST",
             headers: {
-                'Content-Type': 'application/json',
+                "Content-Type": "application/json",
                 ...(parameters.headers || {}),
             },
             body: JSON.stringify({
