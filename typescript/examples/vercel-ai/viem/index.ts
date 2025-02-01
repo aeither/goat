@@ -3,7 +3,7 @@ import readline from "node:readline";
 import { openai } from "@ai-sdk/openai";
 import { generateText } from "ai";
 
-import { http, createWalletClient } from "viem";
+import { createWalletClient, http } from "viem";
 import { privateKeyToAccount } from "viem/accounts";
 import { mantleSepoliaTestnet } from "viem/chains";
 
@@ -27,7 +27,7 @@ const walletClient = createWalletClient({
 // Define sozuHausResident token
 const sozuHausResident: Token = {
     decimals: 18,
-    symbol: "SOZU",
+    symbol: "SHR",
     name: "SozuHausResident",
     chains: {
         "5003": {
