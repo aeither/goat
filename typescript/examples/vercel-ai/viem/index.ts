@@ -3,13 +3,12 @@ import readline from "node:readline";
 import { openai } from "@ai-sdk/openai";
 import { generateText } from "ai";
 
-import { http } from "viem";
-import { createWalletClient } from "viem";
+import { http, createWalletClient } from "viem";
 import { privateKeyToAccount } from "viem/accounts";
-import { base } from "viem/chains";
+import { mantleSepoliaTestnet } from "viem/chains";
 
 import { getOnChainTools } from "@goat-sdk/adapter-vercel-ai";
-import { PEPE, USDC, erc20 } from "@goat-sdk/plugin-erc20";
+import { Token, erc20 } from "@goat-sdk/plugin-erc20";
 
 import { uniswap } from "@goat-sdk/plugin-uniswap";
 import { sendETH } from "@goat-sdk/wallet-evm";
@@ -21,16 +20,29 @@ const account = privateKeyToAccount(process.env.WALLET_PRIVATE_KEY as `0x${strin
 
 const walletClient = createWalletClient({
     account: account,
-    transport: http(process.env.RPC_PROVIDER_URL),
-    chain: base,
+    transport: http("https://rpc.sepolia.mantle.xyz"),
+    chain: mantleSepoliaTestnet,
 });
+
+// Define sozuHausResident token
+const sozuHausResident: Token = {
+    decimals: 18,
+    symbol: "SOZU",
+    name: "SozuHausResident",
+    chains: {
+        "5003": {
+            // Mantle Sepolia chain ID
+            contractAddress: "0xdeB1e008F224c959B75aCCA5413a150DC7049E67", // Replace with actual contract address
+        },
+    },
+};
 
 (async () => {
     const tools = await getOnChainTools({
         wallet: viem(walletClient),
         plugins: [
             sendETH(), // Enable ETH transfers
-            erc20({ tokens: [USDC, PEPE] }), // Enable ERC20 token operations
+            erc20({ tokens: [sozuHausResident] }), // Enable ERC20 token operations
             uniswap({
                 baseUrl: process.env.UNISWAP_BASE_URL as string,
                 apiKey: process.env.UNISWAP_API_KEY as string,
@@ -53,13 +65,6 @@ const walletClient = createWalletClient({
             break;
         }
 
-        console.log("\n-------------------\n");
-        console.log("TOOLS CALLED");
-        console.log("\n-------------------\n");
-
-        console.log("\n-------------------\n");
-        console.log("RESPONSE");
-        console.log("\n-------------------\n");
         try {
             const result = await generateText({
                 model: openai("gpt-4o-mini"),
