@@ -25,20 +25,32 @@ GOAT (Great Onchain Agent Toolkit) is a library that adds more than +200 onchain
 
 
 ## Table of Contens
-- [See all plugins](#plugins)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Set up the project locally](#set-up-the-project-locally)
-- [Examples](https://github.com/goat-sdk/goat/tree/main/typescript/examples)
-- [How to create a plugin](#how-to-create-a-plugin)
-    - [Using the plugin generator](#using-the-plugin-generator)
-    - [Manual creation](#manual-creation)
-- [How to add a chain](#how-to-add-a-chain)
-- [How to add a wallet provider](#how-to-add-a-wallet-provider)
-- [Packages](#packages)
-    - [Plugins](#plugins)
+- [GOAT 🐐  (Typescript)](#goat---typescript)
+  - [Table of Contens](#table-of-contens)
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [Set up the project locally](#set-up-the-project-locally)
+  - [How to create a plugin](#how-to-create-a-plugin)
+    - [Using the Plugin Generator](#using-the-plugin-generator)
+    - [Manual Creation](#manual-creation)
+      - [1. Define your plugin extending the PluginBase class.](#1-define-your-plugin-extending-the-pluginbase-class)
+      - [2. Add tools to the plugin](#2-add-tools-to-the-plugin)
+        - [Option 1: Using the `@Tool` decorator](#option-1-using-the-tool-decorator)
+        - [Option 2: Using the `getTools` and `createTool` functions](#option-2-using-the-gettools-and-createtool-functions)
+      - [3. Add the plugin to the agent](#3-add-the-plugin-to-the-agent)
+      - [Next steps](#next-steps)
+  - [How to add a chain](#how-to-add-a-chain)
+    - [1. Add the chain to the `Chain.ts` file](#1-add-the-chain-to-the-chaints-file)
+    - [2. Create a new wallet provider package](#2-create-a-new-wallet-provider-package)
+    - [3. Create a plugin to allow sending your native token to a wallet](#3-create-a-plugin-to-allow-sending-your-native-token-to-a-wallet)
+    - [4. Implement the wallet client](#4-implement-the-wallet-client)
+    - [5. Submit a PR](#5-submit-a-pr)
+  - [How to add a wallet provider](#how-to-add-a-wallet-provider)
+  - [Packages](#packages)
+    - [Core](#core)
     - [Wallets](#wallets)
-    - [Adapters](#agent-framework-adapters)
+    - [Agent Framework Adapters](#agent-framework-adapters)
+    - [Plugins](#plugins)
 
 ## Installation
 1. Install the core package
@@ -146,7 +158,7 @@ Use the `create-plugin` command to generate all the necessary files and configur
 pnpm create-plugin -n your-plugin-name
 
 # Create a plugin for a specific chain type
-pnpm create-plugin -n your-plugin-name -t evm  # For EVM chains
+pnpm create-plugin -n lifi -t evm  # For EVM chains
 pnpm create-plugin -n your-plugin-name -t solana  # For Solana
 ```
 The command will generate:

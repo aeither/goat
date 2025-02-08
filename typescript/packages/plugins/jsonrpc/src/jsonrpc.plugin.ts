@@ -1,4 +1,4 @@
-import { Chain, PluginBase, WalletClientBase } from "@goat-sdk/core";
+import { type Chain, PluginBase, type WalletClientBase } from "@goat-sdk/core";
 import { JSONRpcService } from "./jsonrpc.service";
 
 export type JSONRpcOptions = {
