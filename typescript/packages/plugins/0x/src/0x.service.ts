@@ -1,6 +1,6 @@
 import { Tool } from "@goat-sdk/core";
-import { EVMWalletClient } from "@goat-sdk/wallet-evm";
-import { GetQuoteParameters } from "./parameters";
+import type { EVMWalletClient } from "@goat-sdk/wallet-evm";
+import type { GetQuoteParameters } from "./parameters";
 
 export class ZeroExService {
     constructor(private readonly apiKey: string) {}

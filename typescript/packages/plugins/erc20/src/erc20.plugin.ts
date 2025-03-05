@@ -1,7 +1,7 @@
 import { type Chain, PluginBase } from "@goat-sdk/core";
 import type { EVMWalletClient } from "@goat-sdk/wallet-evm";
 import { Erc20Service } from "./erc20.service";
-import { type Token } from "./token";
+import type { Token } from "./token";
 
 export type ERC20PluginCtorParams = {
     tokens: Token[];

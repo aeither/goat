@@ -23,8 +23,10 @@
     "keywords": ["ai", "agents", "web3"],
     "dependencies": {
         "@goat-sdk/core": "workspace:*",
-        "zod": "catalog:",
-        "@goat-sdk/wallet-evm": "workspace:*"
+        "@goat-sdk/wallet-evm": "workspace:*",
+        "@lifi/sdk": "^3.5.3",
+        "viem": "^1.21.4",
+        "zod": "catalog:"
     },
     "peerDependencies": {
         "@goat-sdk/core": "workspace:*"
